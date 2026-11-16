@@ -1,0 +1,174 @@
+/* ===== Ei file shudhu design (rong, size, layout) ===== */
+
+:root {
+  --ink: #12263a;
+  --ink-soft: #4a5d70;
+  --paper: #f3f6f4;
+  --card: #ffffff;
+  --line: #d5ddd8;
+  --green: #0b6b4f;
+  --green-dark: #084d38;
+  --green-light: #e8f5f0;
+  --red: #c0392b;
+  --red-light: #fdecea;
+  --brass: #b8892b;
+  --yellow-light: #fff8e1;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Hind Siliguri", system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; }
+.wrap { width: min(1080px, 100% - 2rem); margin-inline: auto; }
+
+/* Topbar */
+.topbar { background: var(--ink); color: #fff; border-bottom: 4px solid var(--brass); padding: .9rem 0; }
+.brand { display: flex; align-items: center; gap: .8rem; }
+.brand-mark { width: 44px; height: 44px; display: grid; place-items: center; background: var(--green); border: 2px solid var(--brass); border-radius: 50%; font-size: 1.4rem; font-weight: 700; }
+.brand-name { margin: 0; font-weight: 600; }
+.brand-sub { margin: 0; font-size: .85rem; opacity: .8; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2.5rem; padding: 3rem 0; align-items: start; }
+.intro h1 { font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.15; margin: 0 0 1rem; }
+.intro p  { color: var(--ink-soft); max-width: 42ch; margin: 0; }
+
+/* Form panel */
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.8rem; box-shadow: 0 10px 30px -18px rgba(18,38,58,.35); }
+.panel h2 { margin: 0 0 1.2rem; font-size: 1.3rem; }
+.field { margin-bottom: 1.1rem; }
+label { display: block; font-weight: 500; margin-bottom: .35rem; }
+input, select { width: 100%; padding: .7rem .85rem; font: inherit; color: var(--ink); background: #fbfcfb; border: 1.5px solid var(--line); border-radius: 8px; }
+input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid rgba(11,107,79,.35); outline-offset: 2px; }
+.field.invalid input, .field.invalid select { border-color: var(--red); }
+.error { margin: .3rem 0 0; min-height: 1.2em; font-size: .88rem; color: var(--red); }
+.captcha-row { display: flex; gap: .6rem; }
+.captcha-row input { flex: 1; }
+.actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+button { font: inherit; cursor: pointer; border-radius: 8px; padding: .75rem 1.4rem; border: 1.5px solid transparent; }
+.primary { background: var(--green); color: #fff; font-weight: 600; }
+.primary:hover { background: var(--green-dark); }
+.primary[disabled] { opacity: .6; cursor: wait; }
+.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+
+/* Result box */
+.result { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px dashed var(--line); }
+.result[hidden] { display: none; }
+.msg { margin: 0 0 1rem; padding: .8rem 1rem; border-radius: 8px; background: var(--red-light); color: #8a2a20; }
+.msg.info { background: var(--yellow-light); color: #6b4e00; }
+
+/* ===== Result Card — original design ===== */
+.res-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 12px -4px rgba(18,38,58,.15);
+}
+
+/* Roll + institute info — simple top strip */
+.res-header {
+  padding: 1rem 1.2rem;
+  border-bottom: 2px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .8rem;
+  align-items: flex-start;
+}
+.res-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  flex: 100%;
+}
+.res-header p {
+  margin: 0;
+  font-size: .88rem;
+  color: var(--ink-soft);
+  background: var(--paper);
+  padding: .2rem .6rem;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+}
+
+/* Semester rows — table-style */
+.sem-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: .5rem 1rem;
+  padding: .75rem 1.2rem;
+  border-bottom: 1px solid var(--line);
+}
+.sem-row:last-of-type { border-bottom: none; }
+.sem-row.passed  { background: #fff; }
+.sem-row.referred{ background: #fff9f9; }
+
+.sem-top {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  grid-column: 1 / -1;
+  margin-bottom: .2rem;
+}
+.sem-name { font-weight: 600; font-size: .95rem; }
+.sem-badge {
+  font-size: .75rem;
+  font-weight: 700;
+  padding: .15rem .55rem;
+  border-radius: 4px;
+  letter-spacing: .3px;
+}
+.passed  .sem-badge { background: #d4edda; color: #155724; }
+.referred .sem-badge{ background: #f8d7da; color: #721c24; }
+
+/* GPA block — inline */
+.gpa-block {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.gpa-lbl   { font-size: .8rem; color: var(--ink-soft); }
+.gpa-val   { font-size: 1.6rem; font-weight: 700; min-width: 3.5ch; }
+.passed  .gpa-val  { color: #1a7a4a; }
+.referred .gpa-val { color: var(--red); }
+.gpa-grade {
+  font-size: .85rem; font-weight: 700;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: .2rem .5rem;
+  border-radius: 4px;
+  color: var(--ink);
+}
+
+/* Failed subjects */
+.failed-list {
+  grid-column: 1 / -1;
+  margin-top: .3rem;
+  font-size: .85rem;
+  color: #7a2020;
+  padding: .3rem .6rem;
+  background: #fff0f0;
+  border-radius: 4px;
+  border-left: 3px solid var(--red);
+}
+.fl-label { font-weight: 600; }
+
+/* Source note */
+.res-note {
+  margin: 0;
+  padding: .5rem 1.2rem;
+  font-size: .78rem;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  font-style: italic;
+}
+
+/* Footer */
+.footer { border-top: 1px solid var(--line); padding: 1.2rem 0; color: var(--ink-soft); font-size: .9rem; text-align: center; }
+.footer p { margin: 0; }
+
+/* Mobile */
+@media (max-width: 820px) { .layout { grid-template-columns: 1fr; padding: 2rem 0; gap: 1.5rem; } }
+@media (max-width: 520px) { .panel { padding: 1.2rem; } .gpa-val { font-size: 1.6rem; } }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- Ei file page-er kathamo (structure). Design ache style.css-e, kaj ache script.js-e -->
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <!-- Mobile-e thik size-e dekhanor jonno -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result Search — Bangladesh Technical Education Board</title>
+  <!-- Font (Hind Siliguri: Bangla ar English duitai bhalo dekhay) -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Design file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Search bar only — no official branding -->
+  <header class="topbar">
+    <div class="wrap brand">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <div>
+        <p class="brand-name">Result Search</p>
+        <p class="brand-sub">Diploma Level — Bangladesh</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+
+    <!-- Bam pash: choto porichoy -->
+    <section class="intro">
+      <h1>Find your result</h1>
+      <p>Search results for Diploma In Engineering, Agriculture, Fisheries, Forestry and Livestock.</p>
+    </section>
+
+    <!-- Dan pash: search form -->
+    <section class="panel">
+      <h2>Result search</h2>
+
+      <!-- novalidate: browser-er nijer error na dekhiye amader script.js error dekhabe -->
+      <form id="resultForm" novalidate>
+
+        <!-- Exam select -->
+        <div class="field">
+          <label for="exam">Exam</label>
+          <select id="exam" required>
+            <option value="">Select exam</option>
+            <option>Any</option>
+            <option>Diploma In Engineering</option>
+            <option>Diploma In Agriculture</option>
+            <option>Diploma In Fisheries</option>
+            <option>Diploma In Forestry</option>
+            <option>Diploma In Livestock</option>
+            <option>Certificate In Marine Trade</option>
+            <option>Diploma In Tourism And Hospitality</option>
+          </select>
+          <p class="error" id="examError"></p>
+        </div>
+
+        <!-- Roll number -->
+        <div class="field">
+          <label for="roll">Roll number</label>
+          <input id="roll" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 123456" required>
+          <p class="error" id="rollError"></p>
+        </div>
+
+        <!-- Captcha: simple jog-er prosno -->
+        <div class="field">
+          <label for="captcha">Verify you are human: <strong id="captchaQuestion"></strong></label>
+          <div class="captcha-row">
+            <input id="captcha" type="text" inputmode="numeric" autocomplete="off" placeholder="Answer" required>
+            <button type="button" id="captchaRefresh" class="ghost">Refresh</button>
+          </div>
+          <p class="error" id="captchaError"></p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="actions">
+          <button type="submit" class="primary" id="submitBtn">Search result</button>
+          <button type="reset" class="ghost">Clear</button>
+        </div>
+      </form>
+
+      <!-- Result ekhane dekhabe (script.js bhore dey) -->
+      <div id="resultBox" class="result" aria-live="polite" hidden></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Result Search — Diploma Level Bangladesh &nbsp;|&nbsp; Data source: BTEB published result gazettes.</p></div>
+  </footer>
+
+  <!-- Kaj korar file -->
+  <script src="script.js"></script>
+</body>
+</html>
